@@ -1,0 +1,2212 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>姚铭山 · 前端作品集</title>
+    <meta
+      name="description"
+      content="姚铭山 · 高级前端开发工程师，6年经验，精通Vue生态、Three.js可视化、小程序与跨平台开发。"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #1e3c72;
+        --primary-light: #2b4c7c;
+        --accent: #4f46e5;
+        --accent-light: #818cf8;
+        --bg: #fafbfc;
+        --card-bg: #ffffff;
+        --border: #e2e8f0;
+        --text: #1a2c3e;
+        --text-secondary: #4a5b6e;
+        --text-muted: #94a3b8;
+        --tag-bg: #f1f5f9;
+        --tag-text: #475569;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);
+        --shadow-hover:
+          0 20px 40px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
+        --radius: 20px;
+        --radius-sm: 12px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family:
+          "Noto Sans SC",
+          "Inter",
+          -apple-system,
+          sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* 顶部导航 */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        background: rgba(250, 251, 252, 0.85);
+        border-bottom: 1px solid var(--border);
+        transition: all 0.3s;
+      }
+      .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .nav-logo {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .nav-logo span {
+        color: var(--accent);
+      }
+      .nav-links {
+        display: flex;
+        gap: 8px;
+      }
+      .nav-links a {
+        padding: 6px 16px;
+        border-radius: 30px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        transition: all 0.2s;
+      }
+      .nav-links a:hover {
+        background: var(--tag-bg);
+        color: var(--primary);
+      }
+      .nav-links a.active {
+        background: var(--primary);
+        color: #fff;
+      }
+      .nav-resume-btn {
+        background: var(--accent) !important;
+        color: #fff !important;
+        border-radius: 30px !important;
+        padding: 6px 16px !important;
+        font-weight: 600 !important;
+        margin-left: 4px;
+      }
+      .nav-resume-btn:hover {
+        background: #4338ca !important;
+      }
+
+      /* Hero */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 120px 24px 80px;
+        background: linear-gradient(
+          160deg,
+          #ffffff 0%,
+          #f0f4ff 60%,
+          #fafbff 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(79, 70, 229, 0.06) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: -100px;
+        left: -100px;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(30, 60, 114, 0.05) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .hero-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .hero-left {
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 16px;
+        background: rgba(79, 70, 229, 0.08);
+        border: 1px solid rgba(79, 70, 229, 0.15);
+        border-radius: 30px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--accent);
+        margin-bottom: 24px;
+      }
+      .hero-badge .dot {
+        width: 6px;
+        height: 6px;
+        background: #10b981;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+      .hero-left h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 1.15;
+        margin-bottom: 12px;
+        letter-spacing: -0.03em;
+      }
+      .hero-left h1 .gradient {
+        background: linear-gradient(
+          135deg,
+          var(--accent) 0%,
+          var(--accent-light) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .hero-title {
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: var(--primary-light);
+        margin-bottom: 24px;
+      }
+      .hero-bio {
+        font-size: 1rem;
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin-bottom: 40px;
+        max-width: 520px;
+      }
+      .hero-btns {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 28px;
+        border-radius: 14px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: all 0.25s;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: white;
+        box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+      }
+      .btn-primary:hover {
+        background: #4338ca;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
+      }
+      .btn-outline {
+        background: white;
+        color: var(--text);
+        border: 1.5px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+      .btn-outline:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateY(-2px);
+      }
+
+      /* Hero 右侧展示区 */
+      .hero-right {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .stat-card {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 20px;
+        text-align: center;
+        box-shadow: var(--shadow);
+        transition: all 0.25s;
+      }
+      .stat-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-hover);
+        border-color: var(--accent-light);
+      }
+      .stat-card:nth-child(1) {
+        border-left: 3px solid #4f46e5;
+      }
+      .stat-card:nth-child(2) {
+        border-left: 3px solid #10b981;
+      }
+      .stat-card:nth-child(3) {
+        border-left: 3px solid #f59e0b;
+      }
+      .stat-card:nth-child(4) {
+        border-left: 3px solid #ec4899;
+      }
+      .stat-number {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .stat-label {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+
+      /* 项目展示卡片 */
+      .hero-project-card {
+        background: #09090b;
+        border-radius: var(--radius);
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: var(--shadow-hover);
+        position: relative;
+      }
+      .hero-project-body {
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+        position: relative;
+      }
+      .hero-project-img-wrap {
+        flex: 0 0 180px;
+        overflow: hidden;
+      }
+      .hero-project-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+      /* 图片弹窗 */
+      .hero-img-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background: rgba(0, 0, 0, 0.88);
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      .hero-img-modal.show {
+        display: flex;
+      }
+      .hero-img-modal img {
+        max-width: 100%;
+        max-height: 90vh;
+        border-radius: 12px;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+        object-fit: contain;
+      }
+      .hero-img-modal-close {
+        position: absolute;
+        top: 20px;
+        right: 24px;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        color: #fff;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+      }
+      .hero-img-modal-close:hover {
+        background: rgba(255, 255, 255, 0.22);
+      }
+      .hero-project-content {
+        flex: 1;
+        padding: 14px 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .hero-project-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      .hero-project-name {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .hero-project-name .dot {
+        width: 8px;
+        height: 8px;
+        background: #10b981;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+      .hero-project-badge {
+        padding: 3px 10px;
+        background: rgba(79, 70, 229, 0.25);
+        border: 1px solid rgba(79, 70, 229, 0.4);
+        border-radius: 20px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #818cf8;
+      }
+      .hero-project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 10px;
+      }
+      .hero-project-tech span {
+        padding: 3px 10px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 6px;
+        font-size: 0.72rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 500;
+      }
+      .hero-project-features {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .hero-project-features li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.55);
+      }
+      .hero-project-features li::before {
+        content: "→";
+        color: var(--accent-light);
+        font-weight: 700;
+      }
+      .hero-project-cta {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+      }
+      .cta-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 10px 16px;
+        border-radius: 10px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+      }
+      .cta-btn.primary {
+        background: var(--accent);
+        color: white;
+      }
+      .cta-btn.primary:hover {
+        background: #4338ca;
+      }
+      .cta-btn.secondary {
+        background: rgba(255, 255, 255, 0.07);
+        color: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .cta-btn.secondary:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .hero-project-footer {
+        padding: 8px 18px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .hero-project-url {
+        font-size: 0.72rem;
+        color: rgba(255, 255, 255, 0.25);
+        font-family: monospace;
+      }
+      .hero-project-status {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.72rem;
+        color: #10b981;
+      }
+      .hero-project-status .dot {
+        width: 5px;
+        height: 5px;
+        background: #10b981;
+        border-radius: 50%;
+      }
+
+      /* Section 通用 */
+      .section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 96px 24px;
+      }
+      .section-header {
+        text-align: center;
+        margin-bottom: 56px;
+      }
+      .section-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 14px;
+        background: rgba(79, 70, 229, 0.08);
+        border-radius: 30px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--accent);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: var(--text);
+        margin-bottom: 12px;
+      }
+      .section-desc {
+        font-size: 1.05rem;
+        color: var(--text-secondary);
+        max-width: 560px;
+        margin: 0 auto;
+      }
+
+      /* 技能 */
+      .skills-section {
+        background: white;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+      .skill-tag {
+        padding: 8px 20px;
+        background: var(--tag-bg);
+        border-radius: 10px;
+        font-size: 0.88rem;
+        font-weight: 500;
+        color: var(--tag-text);
+        border: 1px solid transparent;
+        transition: all 0.2s;
+      }
+      .skill-tag:hover {
+        border-color: var(--accent-light);
+        background: rgba(79, 70, 229, 0.06);
+        color: var(--accent);
+      }
+      .skill-tag.primary {
+        background: rgba(79, 70, 229, 0.08);
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      /* 项目分组标签 */
+      .project-group-label {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .group-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 16px;
+        border-radius: 30px;
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+      .group-badge.featured {
+        background: rgba(79, 70, 229, 0.1);
+        color: var(--accent);
+        border: 1px solid rgba(79, 70, 229, 0.2);
+      }
+      .group-badge.work {
+        background: rgba(16, 185, 129, 0.1);
+        color: #059669;
+        border: 1px solid rgba(16, 185, 129, 0.2);
+      }
+      .group-desc {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+      }
+
+      /* 项目卡片 */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+        gap: 28px;
+      }
+
+      .project-card {
+        background: white;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+      }
+      .project-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-hover);
+        border-color: rgba(79, 70, 229, 0.2);
+      }
+      .project-card.featured {
+        grid-column: 1 / -1;
+        flex-direction: row;
+      }
+      .project-card.featured .card-thumb {
+        width: 45%;
+        aspect-ratio: auto;
+        min-height: 320px;
+      }
+      .project-card.featured .card-content {
+        padding: 2.5rem;
+        justify-content: center;
+      }
+      .card-thumb {
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: #09090b;
+        overflow: hidden;
+        position: relative;
+      }
+      .card-thumb iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        transform: scale(1);
+        transform-origin: center;
+      }
+      .card-thumb-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(9, 9, 11, 0.6) 0%,
+          transparent 50%
+        );
+        display: flex;
+        align-items: flex-end;
+        padding: 16px;
+        pointer-events: none;
+        z-index: 2;
+      }
+      .card-thumb-overlay .live-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 12px;
+        background: rgba(16, 185, 129, 0.9);
+        color: white;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+      .card-thumb-overlay .live-badge .dot {
+        width: 5px;
+        height: 5px;
+        background: white;
+        border-radius: 50%;
+      }
+      .card-content {
+        padding: 1.8rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .card-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .project-title {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--text);
+        letter-spacing: -0.02em;
+      }
+      .project-title small {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-top: 4px;
+      }
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 12px 0 16px;
+      }
+      .tech-badge {
+        padding: 3px 10px;
+        background: rgba(79, 70, 229, 0.07);
+        border-radius: 6px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--accent);
+      }
+      .project-desc {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        line-height: 1.7;
+        flex: 1;
+      }
+      .project-highlights {
+        margin: 16px 0;
+        padding: 16px;
+        background: var(--tag-bg);
+        border-radius: var(--radius-sm);
+      }
+      .project-highlights li {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        margin-bottom: 6px;
+        padding-left: 20px;
+        position: relative;
+        list-style: none;
+      }
+      .project-highlights li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+        font-weight: 700;
+      }
+      .project-links {
+        display: flex;
+        gap: 16px;
+        margin-top: auto;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+      }
+      .project-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--accent);
+        transition: all 0.2s;
+      }
+      .project-links a:hover {
+        gap: 10px;
+        color: #4338ca;
+      }
+      .project-links a.disabled {
+        color: var(--text-muted);
+        pointer-events: none;
+      }
+
+      /* 经历 */
+      .timeline {
+        max-width: 760px;
+        margin: 0 auto;
+        position: relative;
+        padding-left: 32px;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 8px;
+        bottom: 8px;
+        width: 2px;
+        background: var(--border);
+      }
+      .timeline-item {
+        position: relative;
+        margin-bottom: 48px;
+      }
+      .timeline-item:last-child {
+        margin-bottom: 0;
+      }
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -28px;
+        top: 6px;
+        width: 12px;
+        height: 12px;
+        background: white;
+        border: 2px solid var(--accent);
+        border-radius: 50%;
+      }
+      .timeline-date {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 6px;
+      }
+      .timeline-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .timeline-company {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: 12px;
+      }
+      .timeline-desc {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
+
+      /* 联系 */
+      .contact-section {
+        background: linear-gradient(160deg, #f0f4ff 0%, #fafbff 100%);
+        border-top: 1px solid var(--border);
+      }
+      .contact-cards {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 40px;
+      }
+      .contact-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 28px;
+        background: white;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        transition: all 0.2s;
+        text-decoration: none;
+      }
+      .contact-card:hover {
+        border-color: var(--accent-light);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-hover);
+      }
+      .contact-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+        width: 24px;
+        text-align: center;
+      }
+      .contact-card .c-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+      .contact-card .c-value {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .resume-download {
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 40px 24px;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        border-top: 1px solid var(--border);
+      }
+
+      /* 返回顶部 */
+      .back-to-top {
+        position: fixed;
+        right: 28px;
+        bottom: 28px;
+        width: 44px;
+        height: 44px;
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 16px rgba(79, 70, 229, 0.35);
+        transition: all 0.25s;
+        opacity: 0;
+        transform: translateY(16px);
+        pointer-events: none;
+        z-index: 200;
+      }
+      .back-to-top.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      .back-to-top:hover {
+        background: #4338ca;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(79, 70, 229, 0.45);
+      }
+
+      /* 动画 */
+
+      /* 小程序码弹窗 */
+      .qr-modal {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+      }
+      .qr-modal.show {
+        display: flex;
+      }
+      .qr-modal-box {
+        background: white;
+        border-radius: 24px;
+        padding: 36px 32px 28px;
+        text-align: center;
+        max-width: 340px;
+        width: 90%;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+        animation: qrIn 0.22s ease;
+        position: relative;
+      }
+      @keyframes qrIn {
+        from {
+          opacity: 0;
+          transform: scale(0.88);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .qr-modal-box h3 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .qr-modal-box p {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-bottom: 20px;
+      }
+      .qr-modal-box img {
+        width: 220px;
+        height: 220px;
+        border-radius: 12px;
+        display: block;
+        margin: 0 auto;
+        border: none;
+      }
+      .qr-modal-tip {
+        margin-top: 12px;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+      }
+      .qr-modal-close {
+        display: block;
+        margin: 18px auto 0;
+        padding: 10px 32px;
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: inherit;
+        transition: background 0.2s;
+      }
+      .qr-modal-close:hover {
+        background: #4338ca;
+      }
+      .qr-modal-mask {
+        position: fixed;
+        inset: 0;
+        z-index: 9998;
+        display: none;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(2px);
+      }
+      .qr-modal-mask.show {
+        display: block;
+      }
+
+      /* 截图查看弹窗 */
+      .screenshots-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: none;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(4px);
+        align-items: center;
+        justify-content: center;
+      }
+      .screenshots-modal.show {
+        display: flex;
+      }
+      .screenshots-modal-content {
+        position: relative;
+        width: min(1280px, 96vw);
+        max-height: 94vh;
+        background: white;
+        border-radius: var(--radius);
+        padding: 24px;
+        box-shadow: var(--shadow-hover);
+      }
+      .screenshots-modal-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: none;
+        border: none;
+        font-size: 26px;
+        cursor: pointer;
+        color: var(--text-secondary);
+      }
+      .screenshots-modal-close:hover {
+        color: var(--text);
+      }
+      .screenshots-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        align-items: flex-start;
+        max-height: calc(94vh - 48px);
+        overflow: auto;
+      }
+      .screenshots-container img {
+        flex: 1 1 48%;
+        max-width: 650px;
+        min-width: 320px;
+        max-height: calc(94vh - 120px);
+        width: 100%;
+        object-fit: contain;
+        border-radius: var(--radius-sm);
+        box-shadow: var(--shadow);
+      }
+
+      @media (max-width: 1000px) {
+        .screenshots-modal-content {
+          width: min(96vw, 96vw);
+          padding: 18px;
+        }
+        .screenshots-container img {
+          flex: 1 1 100%;
+          min-width: auto;
+          max-height: 60vh;
+        }
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* 响应式 */
+      @media (max-width: 900px) {
+        .hero-project-body {
+          flex-direction: column;
+        }
+        .hero-project-img-wrap {
+          flex: 0 0 auto;
+          height: 120px;
+        }
+        .hero-project-content {
+          padding: 16px 20px;
+        }
+        .hero-inner {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .hero-right {
+          order: -1;
+        }
+        .hero-3d-frame {
+          aspect-ratio: 16/9;
+        }
+        .project-card.featured {
+          flex-direction: column;
+        }
+        .project-card.featured .card-thumb {
+          width: 100%;
+          min-height: auto;
+          aspect-ratio: 16/9;
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-left h1 {
+          font-size: 2.5rem;
+        }
+        .nav-links {
+          display: none;
+        }
+      }
+      @media (max-width: 640px) {
+        .hero-left h1 {
+          font-size: 2rem;
+        }
+        .section {
+          padding: 64px 20px;
+        }
+        .section-title {
+          font-size: 1.75rem;
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+        .contact-cards {
+          flex-direction: column;
+          align-items: center;
+        }
+        .contact-card {
+          width: 100%;
+          max-width: 360px;
+        }
+      }
+
+      /* 视觉优化覆盖 */
+      body {
+        background:
+          radial-gradient(
+            circle at top center,
+            rgba(79, 70, 229, 0.08),
+            transparent 28%
+          ),
+          linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+      }
+
+      main {
+        padding-top: 72px;
+      }
+
+      .nav {
+        background: rgba(255, 255, 255, 0.9);
+        border-bottom-color: rgba(226, 232, 240, 0.8);
+        box-shadow: 0 16px 45px rgba(15, 23, 42, 0.08);
+      }
+
+      .hero {
+        background: linear-gradient(
+          160deg,
+          #ffffff 0%,
+          #eef4ff 58%,
+          #f8fbff 100%
+        );
+      }
+
+      .hero-inner {
+        max-width: 1180px;
+      }
+
+      .hero-badge {
+        background: rgba(79, 70, 229, 0.12);
+        border-color: rgba(79, 70, 229, 0.18);
+      }
+
+      .hero-left h1 {
+        font-size: 3.8rem;
+      }
+
+      .hero-left h1 .gradient {
+        background-image: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+      }
+
+      .hero-title,
+      .hero-bio,
+      .section-desc,
+      .project-desc,
+      .timeline-desc,
+      .c-value {
+        color: #475569;
+      }
+
+      .hero-btns .btn-primary {
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
+        box-shadow: 0 14px 30px rgba(79, 70, 229, 0.22);
+      }
+
+      .hero-btns .btn-primary:hover {
+        background: linear-gradient(135deg, #4338ca, #7c3aed);
+      }
+
+      .btn-outline {
+        background: rgba(255, 255, 255, 0.95);
+        border-color: rgba(226, 232, 240, 0.95);
+      }
+
+      .btn-outline:hover {
+        background: rgba(79, 70, 229, 0.08);
+      }
+
+      .hero-stats {
+        gap: 16px;
+      }
+
+      .stat-card {
+        background: linear-gradient(180deg, #ffffff, #f9fbff);
+        border-color: rgba(226, 232, 240, 0.9);
+      }
+
+      .hero-project-card {
+        background: linear-gradient(135deg, #111827 0%, #0f172a 100%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .hero-project-img-wrap {
+        transition: transform 0.35s ease;
+      }
+
+      .hero-project-img-wrap:hover .hero-project-img {
+        transform: scale(1.04);
+      }
+
+      .hero-project-content {
+        background: transparent;
+      }
+
+      .hero-project-name,
+      .hero-project-badge,
+      .hero-project-features li,
+      .hero-project-url,
+      .hero-project-status {
+        color: #e2e8f0;
+      }
+
+      .hero-project-badge {
+        background: rgba(99, 102, 241, 0.16);
+        border-color: rgba(99, 102, 241, 0.28);
+      }
+
+      .hero-project-features li::before {
+        color: #a5b4fc;
+      }
+
+      .project-card {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.98),
+          #f8fbff 100%
+        );
+        border: none;
+        box-shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+      }
+
+      .project-card:hover {
+        box-shadow: 0 26px 64px rgba(15, 23, 42, 0.12);
+      }
+
+      .project-card.featured {
+        border-radius: 28px;
+      }
+
+      .card-thumb {
+        background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+      }
+
+      .card-thumb-overlay {
+        background: linear-gradient(
+          to top,
+          rgba(15, 23, 42, 0.75) 0%,
+          transparent 60%
+        );
+      }
+
+      .card-content {
+        padding: 2rem;
+      }
+
+      .project-title {
+        color: #0f172a;
+      }
+
+      .project-title small {
+        color: #4f46e5;
+      }
+
+      .project-desc {
+        color: #475569;
+      }
+
+      .project-highlights {
+        background: #eef2ff;
+      }
+
+      .project-highlights li {
+        color: #475569;
+      }
+
+      .project-links a {
+        color: #4338ca;
+      }
+
+      .project-links a:hover {
+        color: #1e3a8a;
+      }
+
+      .skill-tag,
+      .tech-badge,
+      .group-badge {
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .skill-tag:hover,
+      .tech-badge:hover {
+        transform: translateY(-2px);
+      }
+
+      .contact-card {
+        background: linear-gradient(135deg, #ffffff, #f8fbff);
+        border-color: rgba(226, 232, 240, 0.9);
+      }
+
+      .contact-card:hover {
+        box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+      }
+
+      .contact-card i {
+        color: #4f46e5;
+      }
+
+      .resume-download a {
+        min-width: 220px;
+      }
+
+      .back-to-top {
+        right: 24px;
+        bottom: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 导航 -->
+    <nav class="nav">
+      <div class="nav-inner">
+        <div class="nav-logo">
+          <i class="fas fa-laptop-code"></i> 姚铭山作品集
+        </div>
+        <div class="nav-links">
+          <a href="#about">关于</a>
+          <a href="#skills">技能</a>
+          <a href="#experience">经历</a>
+          <a href="#projects">项目</a>
+          <a href="#contact">联系</a>
+          <a
+            href="姚铭山最新简历_20260512170743.pdf"
+            download
+            class="nav-resume-btn"
+          >
+            <i class="fas fa-download"></i> 简历
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero" id="about">
+        <div class="hero-inner">
+          <div class="hero-left fade-in">
+            <div class="hero-badge">
+              <span class="dot"></span>
+              可提供服务 · 欢迎合作
+            </div>
+            <h1>姚铭山</h1>
+            <div class="hero-title">6年经验 · 高级前端 / AI 应用开发工程师</div>
+            <div class="hero-bio">
+              Vue 技术栈深度实践者，独立负责大型项目全流程。<br />
+              熟练运用Codex /OpenCode /Cursor / Copilot 等A I
+              编程工具，将大模型能力融入日常编码、重构与调试，显著提升交付效率与代
+              码可维护性。<br />
+
+              <strong>移动端：</strong>UniApp 跨端开发，覆盖微信小程序 /
+              App（iOS + Android）/
+              H5，一套代码多端运行，精通分包优化与性能调优<br />
+              <strong>Web 端：</strong>专注后台管理系统架构设计与开发
+              ，数据大屏可视化 （Three.js / ECharts / G6），SSR / SEO
+              官网，后台管理系统架构设计<br />
+              <strong>工程化：</strong>组件库建设、CI/CD 流程、MCP 协议、面向 AI
+              友好的模块化设计<br />
+              追求高效、优雅的产品体验，善于前后端协同与团队 UI/UX 演进。
+            </div>
+            <div class="hero-btns">
+              <a href="#projects" class="btn btn-primary">
+                <i class="fas fa-rocket"></i> 查看作品
+              </a>
+              <a
+                href="姚铭山最新简历_20260512170743.pdf"
+                class="btn btn-outline"
+                download
+              >
+                <i class="fas fa-download"></i> 下载完整简历
+              </a>
+              <a href="#contact" class="btn btn-outline">
+                <i class="fas fa-paper-plane"></i> 联系我
+              </a>
+            </div>
+          </div>
+          <div class="hero-right fade-in" style="transition-delay: 0.15s">
+            <!-- 核心数据 -->
+            <div class="hero-stats">
+              <div class="stat-card">
+                <div class="stat-number">6+</div>
+                <div class="stat-label">年开发经验</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">8+</div>
+                <div class="stat-label">商业项目</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">跨端平台</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">复用组件</div>
+              </div>
+            </div>
+
+            <!-- 重点项目展示 -->
+            <div class="hero-project-card">
+              <div class="hero-project-body">
+                <div
+                  class="hero-project-img-wrap"
+                  onclick="openHeroImgModal(this)"
+                  style="cursor: zoom-in"
+                >
+                  <img
+                    src="3d.png"
+                    alt="3D场景编辑器"
+                    class="hero-project-img"
+                    decoding="async"
+                  />
+                  <span class="hero-img-hint"
+                    ><i class="fas fa-search-plus"></i
+                  ></span>
+                </div>
+                <div class="hero-project-content">
+                  <div class="hero-project-header">
+                    <div class="hero-project-name">
+                      <span class="dot"></span>
+                      3D场景编辑器
+                    </div>
+                    <span class="hero-project-badge">面试作品</span>
+                  </div>
+                  <div class="hero-project-tech">
+                    <span>Three.js</span>
+                    <span>Vue3</span>
+                    <span>TypeScript</span>
+                    <span>Vite</span>
+                  </div>
+                  <ul class="hero-project-features">
+                    <li>Web端3D编辑器，支持拖拽添加几何体、灯光、材质</li>
+                    <li>PBR材质实时编辑 + IndexedDB 本地持久化</li>
+                    <li>Vite优化打包，首屏按需加载</li>
+                  </ul>
+                  <div class="hero-project-cta">
+                    <a
+                      href="https://aesthetic-babka-572fc1.netlify.app/"
+                      target="_blank"
+                      class="cta-btn primary"
+                    >
+                      <i class="fas fa-rocket"></i> 在线体验
+                    </a>
+                    <a href="#projects" class="cta-btn secondary">
+                      <i class="fas fa-arrow-down"></i> 更多项目
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-project-footer">
+                <span class="hero-project-url"
+                  >aesthetic-babka-572fc1.netlify.app</span
+                >
+                <span class="hero-project-status">
+                  <span class="dot"></span>
+                  线上运行中
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 技能 -->
+      <section class="skills-section" id="skills">
+        <div class="section">
+          <div class="section-header fade-in">
+            <div class="section-tag"><i class="fas fa-bolt"></i> Skills</div>
+            <h2 class="section-title">核心技术栈</h2>
+            <p class="section-desc">
+              围绕Vue生态深度积累，覆盖从前端界面到可视化大屏的完整技术链路
+            </p>
+          </div>
+          <div class="skills-grid fade-in" style="transition-delay: 0.1s">
+            <span class="skill-tag primary">Vue 2/3</span>
+            <span class="skill-tag primary">Vite</span>
+            <span class="skill-tag primary">Pinia / Vuex</span>
+            <span class="skill-tag primary">UniApp</span>
+            <span class="skill-tag">Nuxt.js</span>
+            <span class="skill-tag">ECharts</span>
+            <span class="skill-tag">AntV G6</span>
+            <span class="skill-tag">Element Plus</span>
+            <span class="skill-tag">Webpack</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Git / CI/CD</span>
+            <span class="skill-tag">性能优化</span>
+            <span class="skill-tag">组件库设计</span>
+            <span class="skill-tag">SSR / SEO</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">Three.js</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 工作经历 -->
+      <section
+        class="section"
+        id="experience"
+        style="background: white; border-top: 1px solid var(--border)"
+      >
+        <div class="section-header fade-in">
+          <div class="section-tag">
+            <i class="fas fa-briefcase"></i> Experience
+          </div>
+          <h2 class="section-title">工作经历</h2>
+        </div>
+        <div class="timeline fade-in" style="transition-delay: 0.1s">
+          <div class="timeline-item">
+            <div class="timeline-date">2023 — 2026/8</div>
+            <div class="timeline-title">高级前端开发工程师</div>
+            <div class="timeline-company">弘艺丰集团 · 全职</div>
+            <div class="timeline-desc">
+              独立负责多条产品线前端架构设计与开发，AI应用开发 、涵盖微信小程序
+              、App 、H5 、企业官网 、 管理后台、数据可视化大屏。主导
+              技术升级、组件库建设与 CI/CD 流程优化，支撑公司核心业务快速增长。
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2019 — 2023</div>
+            <div class="timeline-title">前端开发工程师</div>
+            <div class="timeline-company">北京缇宝科技有限公司 · 全职</div>
+            <div class="timeline-desc">
+              参与多个 ToB / ToC 项目开发，积累了 Vue/ 小程序 / 管理后台 /
+              数据可视化大屏
+              跨端等技术经验，完成了从中级工程师到独立负责模块的成长。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 项目 -->
+      <section class="section" id="projects">
+        <div class="section-header fade-in">
+          <div class="section-tag">
+            <i class="fas fa-folder-open"></i> Projects
+          </div>
+          <h2 class="section-title">项目作品</h2>
+        </div>
+
+        <!-- 面试作品 -->
+        <div
+          class="project-group-label fade-in"
+          style="transition-delay: 0.05s"
+        >
+          <span class="group-badge featured">🏆 面试作品</span>
+          <span class="group-desc">重点展示 · 全程独立开发</span>
+        </div>
+
+        <div class="projects-grid">
+          <!-- 重点项目：ThreeFlow 3D 编辑器 -->
+          <div class="project-card featured fade-in" id="threeflow">
+            <div class="card-thumb">
+              <iframe
+                src="3d-viewer.html?model=living_room_poof_v230223.glb"
+                title="ThreeFlow 3D场景编辑器"
+              ></iframe>
+              <div class="card-thumb-overlay">
+                <span class="live-badge"
+                  ><span class="dot"></span> 可交互预览</span
+                >
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="card-header">
+                <div class="project-title">
+                  3D场景编辑器
+                  <small>🏆 核心项目 · 面试作品</small>
+                </div>
+              </div>
+              <div class="project-tech">
+                <span class="tech-badge">Three.js</span>
+                <span class="tech-badge">Vue3</span>
+                <span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">Vite</span>
+                <span class="tech-badge">Pinia</span>
+                <span class="tech-badge">Element Plus</span>
+              </div>
+              <div class="project-highlights">
+                <ul>
+                  <li>
+                    基于 Three.js 构建的 Web 端 3D
+                    场景编辑器，支持拖拽添加几何体、灯光、模型
+                  </li>
+                  <li>
+                    材质编辑器支持颜色、透明度、金属度、粗糙度等 PBR
+                    参数实时调节
+                  </li>
+                  <li>IndexedDB 本地持久化存储场景数据，支持保存与导出</li>
+                  <li>Vite 优化打包（代码分割 + gzip 压缩），首屏按需加载</li>
+                  <li>8 套主题色切换、响应式布局、DevTools 防护</li>
+                </ul>
+              </div>
+              <div class="project-desc">
+                作为面试作品集项目，展示了我在前端工程化、Three.js 可视化、Vue3
+                组合式 API 以及性能优化方面的综合能力。项目已部署
+                Netlify，可直接访问体验完整功能。
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://aesthetic-babka-572fc1.netlify.app/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <i class="fas fa-external-link-alt"></i> 在线体验
+                </a>
+                <a
+                  href="https://gitee.com/yao-mingshan/3d-scene-editor"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <i class="fab fa-git-alt"></i> 源码
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 企业项目 -->
+        <div
+          class="project-group-label fade-in"
+          style="margin-top: 48px; transition-delay: 0.1s"
+        >
+          <span class="group-badge work">💼 任职企业项目</span>
+          <span class="group-desc">商业交付 · 实际生产运行</span>
+        </div>
+
+        <div class="projects-grid">
+          <!-- 2. 云创荟商城 -->
+          <div class="project-card fade-in">
+            <div class="card-content">
+              <div class="card-header">
+                <div class="project-title">云创荟会员积分商城</div>
+              </div>
+              <div class="project-tech">
+                <span class="tech-badge">UniApp</span>
+                <span class="tech-badge">Vue.js</span>
+                <span class="tech-badge">Vuex</span>
+                <span class="tech-badge">分包优化</span>
+              </div>
+              <div class="project-highlights">
+                <ul>
+                  <li>主导前端架构设计，实现三级分销体系</li>
+                  <li>分包加载优化，首屏渲染 1.5s 内</li>
+                  <li>封装 20+ 可复用组件，开发效率提升 40%</li>
+                </ul>
+              </div>
+              <div class="project-links">
+                <a
+                  href="#"
+                  onclick="
+                    showWxQr(
+                      '云创荟会员积分商城 · 小程序码',
+                      '微信扫一扫或长按识别',
+                      'ych.png',
+                    );
+                    return false;
+                  "
+                  ><i class="fab fa-weixin"></i> 获取小程序码"云创荟商城"</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. 智云轩艺术商城 -->
+          <div class="project-card fade-in">
+            <div class="card-content">
+              <div class="card-header">
+                <div class="project-title">智云轩艺术商城</div>
+              </div>
+              <div class="project-tech">
+                <span class="tech-badge">UniApp</span>
+                <span class="tech-badge">区块链溯源</span>
+                <span class="tech-badge">uni-push</span>
+                <span class="tech-badge">SSR</span>
+              </div>
+              <div class="project-highlights">
+                <ul>
+                  <li>独立全栈开发，一套代码编译至 iOS / Android / H5</li>
+                  <li>集成区块链艺术溯源、消息推送、智能搜索</li>
+                  <li>完成应用商店审核及 ICP 备案</li>
+                </ul>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://app.h5.cloudxan.com"
+                  target="_blank"
+                  rel="noopener"
+                  ><i class="fas fa-globe"></i> H5 体验</a
+                >
+                <a
+                  href="https://h5.cloudxan.com/index.html#/"
+                  target="_blank"
+                  rel="noopener"
+                  ><i class="fab fa-apple"></i> App 下载</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. AI数字人名片 -->
+          <div class="project-card fade-in">
+            <div class="card-content">
+              <div class="card-header">
+                <div class="project-title">AI数字人名片</div>
+              </div>
+              <div class="project-tech">
+                <span class="tech-badge">Vue3 + Vite</span>
+                <span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">Pinia</span>
+                <span class="tech-badge">数字人</span>
+              </div>
+              <div class="project-highlights">
+                <ul>
+                  <li>创新型数字营销工具，双模式智能路由</li>
+                  <li>3D 数字人形象交互，提升用户体验</li>
+                  <li>带参二维码裂变追踪，打通 App 与微信生态</li>
+                </ul>
+              </div>
+              <div class="project-links">
+                <a
+                  href="#"
+                  onclick="
+                    showWxQr(
+                      '智云轩数字名片 · 小程序码',
+                      '微信扫一扫或长按识别(完整功能权限只有企业内部员工可见)',
+                      'zyx.png',
+                    );
+                    return false;
+                  "
+                  ><i class="fab fa-weixin"></i> 获取小程序码"智云轩数字名片"</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. 弘云艺创 -->
+          <div class="project-card fade-in">
+            <div class="card-content">
+              <div class="card-header">
+                <div class="project-title">弘云艺创 · 多门店分销</div>
+              </div>
+              <div class="project-tech">
+                <span class="tech-badge">UniApp</span>
+                <span class="tech-badge">多门店架构</span>
+                <span class="tech-badge">Canvas海报</span>
+                <span class="tech-badge">地图SDK</span>
+              </div>
+              <div class="project-highlights">
+                <ul>
+                  <li>多门店多角色分销体系，独立设计权限验证模块</li>
+                  <li>封装分享海报组件与地图定位组件</li>
+                  <li>支撑艺术品 + 酒水 + 咖啡简餐复合业态</li>
+                </ul>
+              </div>
+              <div class="project-links">
+                <a
+                  href="#"
+                  onclick="
+                    showWxQr(
+                      '弘云艺创 · 小程序码',
+                      '微信扫一扫或长按识别',
+                      'hongyun-wx-qr.png',
+                    );
+                    return false;
+                  "
+                  ><i class="fab fa-weixin"></i> 获取小程序码"弘云艺创"</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. 智云轩官网 & 后台 -->
+          <div class="project-card fade-in">
+            <div class="card-content">
+              <div class="card-header">
+                <div class="project-title">智云轩官网 & 后台管理系统</div>
+              </div>
+              <div class="project-tech">
+                <span class="tech-badge">Nuxt.js SSR</span>
+                <span class="tech-badge">Vue + Element</span>
+                <span class="tech-badge">ECharts</span>
+                <span class="tech-badge">国际化</span>
+              </div>
+              <div class="project-highlights">
+                <ul>
+                  <li>官网 Nuxt 实现 SSR + 多语言支持，提升 SEO</li>
+                  <li>后台含 RBAC 权限、商品/订单管理、数字大屏</li>
+                  <li>大屏 scale 自适应，多端复用</li>
+                </ul>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://www.cloudxan.com"
+                  target="_blank"
+                  rel="noopener"
+                  ><i class="fas fa-external-link-alt"></i> 官网访问</a
+                >
+                <a
+                  href="#"
+                  onclick="
+                    showScreenshots(['dd.png', 'dp.png']);
+                    return false;
+                  "
+                  ><i class="fas fa-images"></i> 查看截图</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. 法律监督平台 -->
+          <div class="project-card fade-in">
+            <div class="card-content">
+              <div class="card-header">
+                <div class="project-title">大数据法律监督平台</div>
+              </div>
+              <div class="project-tech">
+                <span class="tech-badge">Vue全家桶</span>
+                <span class="tech-badge">ECharts</span>
+                <span class="tech-badge">G6</span>
+                <span class="tech-badge">数据可视化</span>
+              </div>
+              <div class="project-highlights">
+                <ul>
+                  <li>检务系统，负责监督线索模块、全文检索</li>
+                  <li>设计可复用图表组件，支持权限路由控制</li>
+                </ul>
+              </div>
+              <div class="project-links">
+                <a href="#" class="disabled"
+                  ><i class="fas fa-lock"></i> 政务内网项目</a
+                >
+                <a
+                  href="#"
+                  onclick="
+                    showScreenshots(['dsj.png']);
+                    return false;
+                  "
+                  ><i class="fas fa-images"></i> 查看截图</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. 电子数据包解析 -->
+          <div class="project-card fade-in">
+            <div class="card-content">
+              <div class="card-header">
+                <div class="project-title">电子数据包解析平台</div>
+              </div>
+              <div class="project-tech">
+                <span class="tech-badge">Vue + Element</span>
+                <span class="tech-badge">ECharts</span>
+                <span class="tech-badge">G6</span>
+                <span class="tech-badge">数据解析</span>
+              </div>
+              <div class="project-highlights">
+                <ul>
+                  <li>数据包导入、账单导入、数据报告、数据分析全链路</li>
+                  <li>使用 G6 可视化数据关系图</li>
+                  <li>优化解析效率，支撑企业决策分析</li>
+                </ul>
+              </div>
+              <div class="project-links">
+                <a href="#" class="disabled"
+                  ><i class="fas fa-chart-line"></i> 企业内部系统</a
+                >
+                <a
+                  href="#"
+                  onclick="
+                    showScreenshots(['dzsjb.png']);
+                    return false;
+                  "
+                  ><i class="fas fa-images"></i> 查看截图</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 联系 -->
+      <section class="contact-section" id="contact">
+        <div class="section">
+          <div class="section-header fade-in">
+            <div class="section-tag">
+              <i class="fas fa-paper-plane"></i> Contact
+            </div>
+            <h2 class="section-title">保持联系</h2>
+            <p class="section-desc">欢迎交流技术、探讨合作或了解工作机会</p>
+          </div>
+          <div class="contact-cards fade-in" style="transition-delay: 0.1s">
+            <a class="contact-card" href="mailto:YMS1440142790@163.com">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <div class="c-label">邮箱</div>
+                <div class="c-value">YMS1440142790@163.com</div>
+              </div>
+            </a>
+            <a class="contact-card" href="tel:15505299530">
+              <i class="fas fa-phone-alt"></i>
+              <div>
+                <div class="c-label">手机</div>
+                <div class="c-value">155 0529 9530</div>
+              </div>
+            </a>
+            <a class="contact-card" href="#" onclick="return false;">
+              <i class="fab fa-weixin"></i>
+              <div>
+                <div class="c-label">微信</div>
+                <div class="c-value">WwYyXx9530</div>
+              </div>
+            </a>
+          </div>
+          <div class="resume-download fade-in" style="transition-delay: 0.2s">
+            <a
+              href="姚铭山最新简历_20260512170743.pdf"
+              class="btn btn-primary"
+              download
+            >
+              <i class="fas fa-download"></i> 下载完整简历（PDF）
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>© 姚铭山 · 前端作品集 ·</p>
+      </div>
+    </footer>
+
+    <script>
+      // 滚动动画
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document
+        .querySelectorAll(".fade-in")
+        .forEach((el) => observer.observe(el));
+
+      // 导航高亮
+      const sections = document.querySelectorAll("section[id], .section[id]");
+      window.addEventListener("scroll", () => {
+        const scrollY = window.scrollY + 100;
+        sections.forEach((section) => {
+          const top = section.offsetTop - 80;
+          const bottom = top + section.offsetHeight;
+          const links = document.querySelectorAll(".nav-links a");
+          links.forEach((link) => {
+            link.classList.remove("active");
+            if (
+              link.getAttribute("href") === "#" + section.id &&
+              scrollY >= top &&
+              scrollY < bottom
+            ) {
+              link.classList.add("active");
+            }
+          });
+        });
+      });
+    </script>
+
+    <script>
+      // 通用微信小程序码弹窗
+      function showWxQr(title, desc, imgSrc) {
+        var modal = document.getElementById("wxQrModal");
+        modal.querySelector(".wx-qr-title").textContent = title;
+        modal.querySelector(".wx-qr-desc").textContent = desc;
+        modal.querySelector(".wx-qr-img").src = imgSrc;
+        modal.classList.add("show");
+        document.getElementById("qrMask").classList.add("show");
+      }
+      function hideWxQr() {
+        document.getElementById("wxQrModal").classList.remove("show");
+        document.getElementById("qrMask").classList.remove("show");
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("closeWxQr")
+          .addEventListener("click", hideWxQr);
+        document.getElementById("qrMask").addEventListener("click", hideWxQr);
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") hideWxQr();
+        });
+
+        // 返回顶部
+        var backBtn = document.getElementById("backToTop");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 400) {
+            backBtn.classList.add("visible");
+          } else {
+            backBtn.classList.remove("visible");
+          }
+        });
+        backBtn.addEventListener("click", function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      });
+    </script>
+
+    <!-- 返回顶部 -->
+    <button class="back-to-top" id="backToTop" title="返回顶部">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- 通用微信小程序码弹窗 -->
+    <div class="qr-modal-mask" id="qrMask"></div>
+    <div class="qr-modal" id="wxQrModal">
+      <div class="qr-modal-box">
+        <h3 class="wx-qr-title">微信小程序码</h3>
+        <p class="wx-qr-desc">微信扫一扫或长按识别</p>
+        <img class="wx-qr-img" src="" alt="微信小程序码" />
+        <div class="qr-modal-tip">
+          <i class="fas fa-mobile-alt"></i> 微信内长按图片可直接识别跳转
+        </div>
+        <button class="qr-modal-close" id="closeWxQr">关闭</button>
+      </div>
+    </div>
+
+    <!-- 图片放大弹窗 -->
+    <div
+      class="hero-img-modal"
+      id="heroImgModal"
+      onclick="if (event.target === this) closeHeroImgModal();"
+    >
+      <img id="heroImgLarge" src="" alt="大图预览" />
+      <button class="hero-img-modal-close" onclick="closeHeroImgModal()">
+        ✕
+      </button>
+    </div>
+
+    <!-- 截图查看弹窗 -->
+    <div class="screenshots-modal" id="screenshotsModal">
+      <div class="screenshots-modal-content">
+        <button
+          class="screenshots-modal-close"
+          onclick="closeScreenshotsModal()"
+        >
+          ✕
+        </button>
+        <div class="screenshots-container" id="screenshotsContainer"></div>
+      </div>
+    </div>
+
+    <script>
+      function openHeroImgModal(wrap) {
+        var img = wrap.querySelector("img");
+        var modal = document.getElementById("heroImgModal");
+        var largeImg = document.getElementById("heroImgLarge");
+        largeImg.src = img.src;
+        largeImg.alt = img.alt;
+        modal.classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
+      function closeHeroImgModal() {
+        var modal = document.getElementById("heroImgModal");
+        modal.classList.remove("show");
+        document.body.style.overflow = "";
+      }
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeHeroImgModal();
+      });
+    </script>
+
+    <script>
+      // 截图查看功能
+      function showScreenshots(images) {
+        var modal = document.getElementById("screenshotsModal");
+        var container = document.getElementById("screenshotsContainer");
+        container.innerHTML = "";
+        images.forEach(function (imgSrc) {
+          var img = document.createElement("img");
+          img.src = imgSrc;
+          img.alt = "项目截图";
+          img.loading = "lazy";
+          img.decoding = "async";
+          container.appendChild(img);
+        });
+        modal.classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
+      function closeScreenshotsModal() {
+        var modal = document.getElementById("screenshotsModal");
+        modal.classList.remove("show");
+        document.body.style.overflow = "";
+      }
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeScreenshotsModal();
+      });
+    </script>
+  </body>
+</html>
